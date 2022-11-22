@@ -1,3 +1,23 @@
+## DEPLY COMMANDS 
+-npm i  -g firebase-tools
+
+Firebase login
+
+-Firebase init 
+
+-Select - hosting -configure
+
+ -existing-build
+
+-Set to build folder (important)
+
+-npm run build
+
+Firebase deploy
+
+################################ 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
