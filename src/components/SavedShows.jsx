@@ -10,31 +10,36 @@ const SavedShows = () => {
   const { user } = UserAuth();
 
   const slideLeft = () => {
-    var slider = document.getElementById('slider');
+    const slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft - 500;
   };
+
   const slideRight = () => {
-    var slider = document.getElementById('slider');
+    const slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft + 500;
   };
 
   useEffect(() => {
-    onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
+    const unsubscribe = onSnapshot(doc(db, 'users', `${user?.email}`), (doc) => {
       setMovies(doc.data()?.savedShows);
     });
+
+    return () => {
+      unsubscribe();
+    };
   }, [user?.email]);
 
-  const movieRef = doc(db, 'users', `${user?.email}`)
+  const movieRef = doc(db, 'users', `${user?.email}`);
   const deleteShow = async (passedID) => {
-      try {
-        const result = movies.filter((item) => item.id !== passedID)
-        await updateDoc(movieRef, {
-            savedShows: result
-        })
-      } catch (error) {
-          console.log(error)
-      }
-  }
+    try {
+      const result = movies.filter((item) => item.id !== passedID);
+      await updateDoc(movieRef, {
+        savedShows: result,
+      });
+    } catch (error) {
+      console.log('Error during show deletion:', error);
+    }
+  };
 
   return (
     <>
@@ -46,7 +51,7 @@ const SavedShows = () => {
           size={40}
         />
         <div
-          id={'slider'}
+          id='slider'
           className='w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative'
         >
           {movies?.map((item) => (
@@ -63,7 +68,9 @@ const SavedShows = () => {
                 <p className='white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center'>
                   {item?.title}
                 </p>
-                <p onClick={()=> deleteShow(item.id)} className='absolute text-gray-300 top-4 right-4'><AiOutlineClose /></p>
+                <p onClick={() => deleteShow(item.id)} className='absolute text-gray-300 top-4 right-4'>
+                  <AiOutlineClose />
+                </p>
               </div>
             </div>
           ))}
