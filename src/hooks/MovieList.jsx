@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import Movie from './Movie';
+import Movie from '../components/Movie';
 
 const MovieList = ({ movies }) => {
   const [likeState, setLikeState] = useState({});

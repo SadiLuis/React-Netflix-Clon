@@ -5,6 +5,9 @@ import { db } from '../Firebase';
 import { updateDoc, doc, onSnapshot } from 'firebase/firestore';
 import { AiOutlineClose } from 'react-icons/ai';
 
+
+
+/* COMPONENTE DONDE VAMOS A MOSTRAR LA LISTA DE MOVIES GUARDADA POR EL USUARIO */
 const SavedShows = () => {
   const [movies, setMovies] = useState([]);
   const { user } = UserAuth();

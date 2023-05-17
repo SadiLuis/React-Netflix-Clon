@@ -4,6 +4,8 @@ import Movie from './Movie';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import Filter from './Filter';
 
+
+/* LISTA DE PELICULAS QUE RENDERIZA EL TITULO, UN FILTRO Y FUNCION PARA DESPLAZAR LA LISTA */
 const Row = ({ title, fetchURL, IdRow }) => {
   const [movies, setMovies] = useState([]);
   const [filterName, setFilterName] = useState('');
